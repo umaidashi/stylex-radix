@@ -1,17 +1,27 @@
 import { Button } from "@radix-ui/themes";
-import stylex from "@stylexjs/stylex";
+import * as stylex from "@stylexjs/stylex";
+
+const DARK = "@media (prefers-color-scheme: dark)";
+
 const s = stylex.create({
+  title: {
+    fontSize: 32,
+  },
   redbox: {
-    backgroundColor: "red",
-    width: 100,
+    backgroundColor: { default: "black", [DARK]: "white" },
+    color: { default: "white", [DARK]: "black" },
+    width: 240,
     height: 100,
+    margin: 4,
   },
 });
 
 export default function Home() {
   return (
     <main>
-      <Button className={stylex(s.redbox)}>Button Radix Ui</Button>
+      <h1>StyleX and Radix UI</h1>
+      <Button {...stylex.props(s.redbox)}>Button Radix Ui</Button>
+      <button {...stylex.props(s.redbox)}>button</button>
     </main>
   );
 }
