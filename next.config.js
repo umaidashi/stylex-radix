@@ -1,12 +1,13 @@
 /** @type {import('next').NextConfig} */
 const stylexPlugin = require("@stylexjs/nextjs-plugin");
-const babelrc = require("./.babelrc.js");
-const plugins = babelrc.plugins;
-const [_name, options] = plugins.find(
-  (plugin) => Array.isArray(plugin) && plugin[0] === "@stylexjs/babel-plugin"
-);
-const rootDir = options.unstable_moduleResolution.rootDir ?? __dirname;
+
+const nextConfig = {
+  // Configure `pageExtensions` to include MDX files
+  pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
+  // Optionally, add any other Next.js config below
+};
 
 module.exports = stylexPlugin({
-  rootDir,
-})({});
+  filename: "stylex-bundle.css",
+  rootDir: __dirname,
+})(nextConfig);
